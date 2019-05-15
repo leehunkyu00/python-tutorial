@@ -1,4 +1,5 @@
-const ps = require('python-shell').PythonShell;
+// https://github.com/extrabacon/python-shell
+const { PythonShell } = require('python-shell');
 
 const options = {
     mode: 'text',
@@ -8,8 +9,24 @@ const options = {
     args: ['value1', 'value2', 'value3']
 };
 
-ps.run('test.py', options, function(err, results) {
+PythonShell.run('test.py', options, function(err, results) {
     if (err) throw err;
 
     console.log('result: %j', results);
+    const arr = getArr(results[0]);
+    console.log(arr[0], arr[1])
 })
+
+getArr = str => {
+    res = null;
+    if (str) {
+        str = str.replace(/'/g, '"');
+        try {
+            res = JSON.parse(str);
+        } catch(err) {
+            console.log("err : ", err)
+        }
+    }
+
+    return res;
+}
