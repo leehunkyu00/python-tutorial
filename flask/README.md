@@ -29,4 +29,6 @@ $ pip install flask-sqlalchemy
 ## template
 jinja template engine
 
-# 
+# 회원가입 기능 만들기
+## get/post 받기
+from flask import request
