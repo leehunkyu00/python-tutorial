@@ -55,3 +55,10 @@ form안에 hash키를 넣어놓고 입력받은 form에 hash을 비교하여 맞
 form html안에 {{ form.csrf_token }}
 
 3. 유효성 검사를 해주는 기능이 있어서 사용할 수 있다.
+
+
+# static file 관리하기
+file들을 flask에서 관리하는 방법
+
+static 폴더를 만들어서 여기에 넣으면 끝.
+static 하위 경로로 사용하면 된다.
