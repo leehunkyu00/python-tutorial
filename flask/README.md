@@ -62,3 +62,11 @@ file들을 flask에서 관리하는 방법
 
 static 폴더를 만들어서 여기에 넣으면 끝.
 static 하위 경로로 사용하면 된다.
+
+# login/logout 만들기
+from flask import session 을 이용해서 만든다.
+
+여기서 주의할 점은 validators에 사용자 정의 클래스의 실패시 return하는 값은
+return으로 쓰는게 아니라 raise로 쓴다.
+
+코드를 보면 특이한걸 알 수 있다.
