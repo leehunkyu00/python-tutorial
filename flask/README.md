@@ -70,3 +70,41 @@ from flask import session 을 이용해서 만든다.
 return으로 쓰는게 아니라 raise로 쓴다.
 
 코드를 보면 특이한걸 알 수 있다.
+
+
+# python anywhere
+
+
+file을 upload한 뒤
+
+bash shell을 열어서 아래와 같이 설정한다.
+06:14 ~ $ virtualenv --python=python3.7 flask_fastcampus
+06:15 ~ $ source flask_fastcampus/bin/activate
+(flask_fastcampus) 06:15 ~ $ pip install flask flask-wtf flask-sqlalchemy
+
+web으로 가서 'Add a new web app'을 선택한다.
+manual config로 python 3.7선택
+
+코드 위치설정
+project directory path 설정
+/home/leehunkyu00/[project dir]
+
+leehunkyu00_pythonanywhere_com_wsgi.py 수정
+```
+import sys
+
+# The "/home/leehunkyu00" below specifies your home
+# directory -- the rest should be the directory you uploaded your Flask
+# code to underneath the home directory.  So if you just ran
+# "git clone git@github.com/myusername/myproject.git"
+# ...or uploaded files to the directory "myproject", then you should
+# specify "/home/leehunkyu00/myproject"
+path = '/home/leehunkyu00/project'
+if path not in sys.path:
+    sys.path.append(path)
+
+from app import app as application  # noqa
+```
+
+가상환경 설정
+/home/leehunkyu00/[virtual path]
