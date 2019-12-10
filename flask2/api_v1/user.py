@@ -43,3 +43,45 @@ def users():
 
     # type 2. 진행형 리스트
     return jsonify([user.serialize for user in users])
+
+@api.route('/users/<uid>', methods=['GET', 'PUT', 'DELETE'])
+def user_detail(uid):
+    if request.method == 'GET':
+        # get
+        user = Fcuser.query.filter(Fcuser.id == uid).first()
+        return jsonify(user.serialize)
+
+    elif request.method == 'DELETE':
+        # Delete
+        Fcuser.query.delete(Fcuser.id == uid)
+        return jsonify(), 204       # 204 no content, 정상적으로 삭제되었으니 앞으로 사용할 수 없다는 의미
+
+    # else:
+        # 수정
+
+    # Modify
+    # put은 전체를 덮는 경향, fetch는 일부를 수정하는 경향이 있다.
+
+    data = request.get_json()
+    # type 1. Arrange get data
+    # userid = data.get('userid')
+    # username = data.get('username')
+    # password = data.get('password')
+
+    # updated_data = {}
+    # if userid:
+    #     updated_data['userid'] = userid
+    # if username:
+    #     updated_data['username'] = username
+    # if password:
+    #     updated_data['password'] = password
+    # Fcuser.query.filter(Fcuser.id == uid).update(updated_data)
+    # type 1. end
+
+    # type 2. put in data on directly
+    Fcuser.query.filter(Fcuser.id == uid).update(data)
+    # type 2. end 
+
+    user = Fcuser.query.filter(Fcuser.id == uid).first()
+
+    return jsonify(user.serialize)
