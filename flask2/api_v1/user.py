@@ -32,5 +32,14 @@ def users():
 
         return jsonify(), 201
 
+    users = Fcuser.query.all()
+    # 직렬화를 위해서 모델 안에 리턴해주는 포맷을 만든 후 진행형 리스트로 만들어서 전달한다.
 
-    return jsonify(), 404
+    # type 1. 만든 후 return
+    # res_users = []
+    # for user in users:
+    #     res_users.append(user.serialize)
+    # return jsonify(res_users)
+
+    # type 2. 진행형 리스트
+    return jsonify([user.serialize for user in users])
