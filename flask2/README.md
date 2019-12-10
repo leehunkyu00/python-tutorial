@@ -21,3 +21,20 @@ app.py file
 
 ### source
 model.py file
+
+# API 만들기
+blue code란걸 사용해서 api을 관리한다.
+
+## 과정
+api.v1을 만들고 app.py에 등록을 한다.
+
+```
+from api_v1 import api as api_v1
+
+app.register_blueprint(api_v1, url_prefix="/api/v1")
+```
+http://localhost:5000/api/v1/test
+
+
+### source
+api.v1 folder
