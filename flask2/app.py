@@ -20,8 +20,7 @@ def login():
 
 @app.route('/')
 def hello():
-    print(session.get('userid'))
-    return 'hello world! ' + session.get('userid')
+    return render_template('home.html')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 dbfile = os.path.join(basedir, 'db.sqlite')
@@ -43,7 +42,12 @@ def authonticate(username, password):
     if user.password == password:
         return user
 
-jwt = JWT(app, authonticate)
+def identity(payload):
+    userid = payload['identity']
+    return Fcuser.query.filter(Fcuser.id == userid).first()
+
+
+jwt = JWT(app, authonticate, identity)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)

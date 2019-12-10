@@ -1,5 +1,6 @@
 from flask import jsonify
 from flask import request
+from flask_jwt import jwt_required
 from models import Fcuser, db
 from . import api
 # json 형태의 데이터를 반환
@@ -9,6 +10,7 @@ def test():
     return jsonify(), 404
 
 @api.route('/users', methods=['GET', 'POST'])
+@jwt_required()
 def users():
     if request.method == 'POST':
         data = request.get_json()
