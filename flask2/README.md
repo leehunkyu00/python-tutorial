@@ -22,6 +22,9 @@ app.py file
 ### source
 model.py file
 
+## Install flask-JWT
+(flask_rest) [path]> pip install Flask-JWT
+
 # API 만들기
 blue code란걸 사용해서 api을 관리한다.
 
