@@ -13,3 +13,11 @@ $ source .\flask_rest\bin\activate
 
 (flask_rest) PS [path]> pip install flask
 
+### source
+app.py file
+
+## Install flask-sqlalchemy
+(flask_rest) PS [path]> pip install flask-sqlalchemy
+
+### source
+model.py file
